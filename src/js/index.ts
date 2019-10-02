@@ -1,12 +1,37 @@
-interface Person {
-    firstName: string;
-    lastName: string;
+function Manipulate(): void {
+    let inputElement: HTMLInputElement = <HTMLInputElement>document.getElementById("inputField");
+    let selectElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById("functionSelector");
+    let divElement: HTMLDivElement = <HTMLDivElement>document.getElementById("output");
+
+
+    let stringToManipulate: string = inputElement.value;
+    let manipulationToPerform: string = selectElement.value;
+
+    divElement.innerHTML = ManipulationHelper(stringToManipulate, manipulationToPerform);
+
+
+
 }
 
-function greeter(person: Person): string {
-    return "Hello, " + person.firstName + " " + person.lastName;
-}
-let user: Person = { firstName: "John", lastName: "Doe" };
+function ManipulationHelper(stringToManipulate: string, manipulationToPerform: string): string {
 
-let element: HTMLDivElement = <HTMLDivElement> document.getElementById("content");
-element.innerHTML = greeter(user);
+    switch (manipulationToPerform) {
+        case "Upper case":
+            return stringToManipulate.toUpperCase();
+        case "Lower case":
+            return stringToManipulate.toLowerCase();
+    }
+    /*if (manipulationToPerform == "Upper case") {
+        return stringToManipulate.toLocaleUpperCase();
+
+    }
+    else if (manipulationToPerform == "Lower case") {
+        return stringToManipulate.toLocaleLowerCase();
+    }*/
+
+
+
+}
+
+let buttonElement: HTMLButtonElement = <HTMLButtonElement>document.getElementById("actButton");
+buttonElement.addEventListener("click", Manipulate);
